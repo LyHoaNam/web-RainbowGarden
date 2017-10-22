@@ -1,0 +1,214 @@
+div.wpcf7 {
+	margin: 0;
+	padding: 0;
+}
+
+div.wpcf7-response-output {
+	margin: 2em 0.5em 1em;
+	padding: 0.2em 1em;
+}
+
+div.wpcf7 .screen-reader-response {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	width: 1px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+div.wpcf7-mail-sent-ok {
+	border: 2px solid #398f14;
+}
+
+div.wpcf7-mail-sent-ng {
+	border: 2px solid #ff0000;
+}
+
+div.wpcf7-spam-blocked {
+	border: 2px solid #ffa500;
+}
+
+div.wpcf7-validation-errors {
+	border: 2px solid #f7e700;
+}
+
+span.wpcf7-form-control-wrap {
+	position: relative;
+}
+
+span.wpcf7-not-valid-tip {
+	color: #f00;
+	font-size: 1em;
+	display: block;
+}
+
+.use-floating-validation-tip span.wpcf7-not-valid-tip { 
+	position: absolute;
+	top: 20%;
+	left: 20%;
+	z-index: 100;
+	border: 1px solid #ff0000;
+	background: #fff;
+	padding: .2em .8em;
+}
+
+span.wpcf7-list-item {
+	margin-left: 0.5em;
+}
+
+.wpcf7-display-none {
+	display: none;
+}
+
+div.wpcf7 img.ajax-loader {
+	border: none;
+	vertical-align: middle;
+	margin-left: 4px;
+}
+
+div.wpcf7 div.ajax-error {
+	display: none;
+}
+
+div.wpcf7 .placeheld {
+	color: #888;
+}
+
+.testimonials .testimonial-quote {
+    position: relative;
+    margin: 30px 0;
+    padding: 40px 40px 40px 90px;
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    line-height: 2;
+    background-color: #ffffff;
+    border-radius: 1px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+.testimonials .testimonial-quote::after {
+    position: absolute;
+    content: " ";
+    top: 100%;
+    left: 25px;
+    height: 0;
+    width: 0;
+    border: solid transparent;
+    border-color: rgba(72, 71, 71, 0);
+    border-top-color: #ffffff;
+    border-width: 15px;
+}
+.testimonials .testimonial-quote::before {
+    position: absolute;
+    content: '“';
+    top: 30px;
+    left: 20px;
+    color: rgba(50, 50, 50, 0.2);
+    font-size: 100px;
+    font-family: Georgia, Times, 'Times New Roman', sans-serif;
+    width: 50px;
+    height: 50px;
+    line-height: 97px;
+    transition: all 100ms ease-out;
+}
+.testimonials .testimonial-person .testimonial-author {
+    display: block;
+    font-family: "Arial", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: normal;
+    color: #464646;
+}
+.testimonials .testimonial .author-location, .post .post-left-meta .box.date .day, .post .post-title a:hover, .w-footer .icon-box .fa, .content .icon-box .fa, .opening-times ul li.today, .wpcf7 span, .testimonials .testimonial-person .testimonial-location, .panel-group .accordion-toggle:hover, .panel-group .accordion-toggle::before {
+    color: #a2c046;
+}
+.quoteText
+{
+	 font-family: "Arial", sans-serif;
+     line-height: 1.6;
+     color: #a5a5a5; 
+    text-rendering: optimizeLegibility;
+}
+.content .testimonials .widget-title {
+    margin-bottom: 0; 
+    padding-bottom: 15px;
+    border-color: #d2d2d2;
+}
+.testimonials .testimonial-control {
+    position: relative;
+    float: right;
+    margin: 1px 0 0 0;
+    width: 63px;
+    height: 50px;
+    font-size: 22px;
+    color: #ffffff;
+    line-height: 50px;
+    text-align: center;
+    background-color: #a2c046;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 1px;
+    outline: none;
+    transition: all 100ms ease-out;
+}
+.testimonials .testimonial-control::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    width: 13px;
+    height: 50px;
+    z-index: 1;
+    background-color: #a2c046;
+    -ms-transform: skew(-25deg);
+    -webkit-transform: skew(-25deg);
+    -moz-transform: skew(-25deg);
+    -o-transform: skew(-25deg);
+    transform: skew(-25deg);
+    transition: all 100ms ease-out;
+}
+.testimonials .testimonial-control.right {
+    border-radius: 0 2px 2px 0;
+}
+.btn-primary, .btn-primary:active, .btn-primary:focus, .btn-primary:active:focus, .btn-primary:hover, .wpcf7-submit, span.wpcf7-list-item, button, .navbar-toggle, input[type='button'], input[type='reset'], input[type='submit'], .jumbotron .carousel-indicators li.active, .post-item .vertical-center span, .post-item .label-wrap .label, .testimonials .testimonial-control, .testimonials .testimonial-control:first-of-type::before, .testimonials .testimonial-control:last-of-type::before, .cta-button, .brochure-box, .project-navigation a, .pagination a.current, .pagination span.current, .sidebar .widget.widget_nav_menu .menu li:hover, .sidebar .widget.widget_nav_menu .menu li.current-menu-item a, .sidebar .widget.widget_nav_menu .menu li a:hover, .panel-group .panel .panel-heading .accordion-toggle[aria-expanded="true"] {
+    background-color: #a2c046;
+    color: #ffffff;
+}
+#pg-4680-1, #pl-4680 .panel-grid-cell .so-panel:last-child {
+    margin-bottom: 0px;
+}
+.fa-angle-right:before {
+    content: "";
+}
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.widget { position: relative; padding: 10px 0; border-top: 1px solid rgba(255, 255, 255, 0.1); width: auto; }
+.block-posts .widget-title a { float: right; margin-top: 20px; font-family: "Arial", sans-serif; font-size: 14px; text-transform: uppercase; }
+.block-posts .widget-title a .fa { padding-left: 10px; }
+.testimonials .testimonial-control.left {
+    border-radius: 2px 0 0 2px;
+}
+style.css?ver=1.0.8:1960
+.testimonials .testimonial-control.left {
+    border-radius: 2px 0 0 2px;
+}
+[role="button"] {
+    cursor: pointer;
+}
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
