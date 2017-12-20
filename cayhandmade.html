@@ -11,6 +11,7 @@
     <title>Cây Handmade</title>
     <link rel="shortcut icon" href="img/logo.ico" />
     <!-- Bootstrap core CSS -->
+    
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
@@ -96,118 +97,11 @@
       color: #a1e6a1 !important;
     }
   </style>
+  <form action="php/products-list.php" method="get">
       <div class="row">
+    
+        <?php include("php/products-list.php"); ?>
         <!--
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://9xgarden.com/wp-content/uploads/2015/11/hop-go-ve-bigly-mong-rong-2.jpg" width="160px" height="160px" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Bigly Móng Rồng</a>
-              </h4>
-             
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://9xgarden.com/wp-content/uploads/2015/10/hop-go-ong-dieu.jpg" width="160px" height="160px" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Hộp Gỗ Ống Điếu</a>
-              </h4>
-              
-            </div>
-          </div>
-        </div>
-        
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://9xgarden.com/wp-content/uploads/2015/10/hop-go-la-tim.jpg" width="80px" height="160px" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Hộp Gỗ Lá Tim</a>
-              </h4>
-              
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://9xgarden.com/wp-content/uploads/2015/12/chau-go-ve-sen-kim-3.jpg" width="80px" height="160px" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Merry Chrismas Sen Kim</a>
-              </h4>
-              <p class="card-text">Cây Sen Đá Mặt Trăng phù hợp với người mệnh kim và thổ giúp mang đến tiền tài và danh vọng. Cây phù hợp làm cây để bàn, trang trí quán cà phê, cửa sổ…</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://9xgarden.com/wp-content/uploads/2015/10/hop-go-mong-rong.jpg" width="160px" height="160px"alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Hộp Gỗ Móng Rồng</a>
-              </h4>
-              <p class="card-text">Xương rồng kim hổ thủy sinh có ý nghĩa phong thủy giúp trừ tà, phù hợp làm quà tặng, trang trí bàn làm việc, bàn học, để cạnh máy tính giúp hút bức xạ..</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://9xgarden.com/wp-content/uploads/2015/10/hop-go-ve-sen-da-ca-sau.jpg" width="160px" height="160px"alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">Gỗ Vẽ Cá Sấu</a>
-              </h4>
-              <p class="card-text"> Cây sen đá chuỗi ngọc đứng cây nhỏ phù hợp với việc trang trí bàn làm việc, góc học tập. Cây cho bạn thấy một sự sống mãnh liệt.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://webcaycanh.com/wp-content/uploads/2015/10/sen-da-huong-11-160x160.jpg" width="160px" height="160px"alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">SEN ĐÁ HƯỜNG</a>
-              </h4>
-              <p class="card-text">Sen đá hường thường được trồng đơn hoặc 3 cây 1 trong 1 chậu to, cây cứng cáp và có lá dày nhìn rất thích mắt, cây mang đến sức khỏe của người sở hữu..</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="http://webcaycanh.com/wp-content/uploads/2016/09/sen-da-luc-binh-160x160.jpg"width="160px" height="160px" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="#">SEN ĐÁ LỤC BÌNH</a>
-              </h4>
-              <p class="card-text">Cây sen đá Lục Bình có màu xanh tươi mát mang đến cho không gian của bạn sự thoải mái, cây phù hợp để bàn, trang trí quán cà phê.</p>
-            </div>
-          </div>
-        </div>
-      -->
-       <div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
-
-          <div class="card h-348 cart_items">
-            <div class="dropdown">
-            <a href="sanpham.html" class="product-image"><img class="card-img-top" src="http://9xgarden.com/wp-content/uploads/2015/12/chau-dat-nung-sen-da-tu-phuong-2.jpg" alt=""></a>
-            <div class="dropdown-content"><img src="http://9xgarden.com/wp-content/uploads/2015/12/chau-dat-nung-sen-da-tu-phuong-2.jpg" width="400" height="400"></div>
-          </div>
-            <div class="card-body" style=" 
-          
-            ">
-              <h4 class="card-title Namet">
-               Santa Claus Tứ Phương
-              </h4>
-              <span style="width: 100%">
-                <strong class="Giat">100.000&nbsp;₫</strong>
-                <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-              </span>
-            </div>
-          </div>
-        </div>
         <div class="col-md-4 col-sm-6 col-lg-3  portfolio-item">
           <div class="card h-100 cart_items">
             <div class="dropdown">
@@ -334,8 +228,9 @@
             </div>
           </div>
         </div>
+      -->
       </div>
-
+  </form>
       <!-- Pagination -->
       
 
