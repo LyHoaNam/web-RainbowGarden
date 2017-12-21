@@ -22,9 +22,9 @@
 
  	public function executeNonQuery($sql){
  		if ($GLOBALS['conn']->query($sql) === TRUE) {
- 			echo "Your query has been executed successfully";
+ 			return true;
  		} else {
- 			echo "Error: " . $sql . "<br>" . $GLOBALS['conn']->error;
+ 			return false;
  		}
  	}
 

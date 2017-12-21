@@ -1,11 +1,9 @@
 <?php
-
+@session_start();
 include "../../php/connectDB.php";
-
-
+$fullname_ac="admin";
+$username_ac="LyHoaNam";
 if (isset($_POST["btn_submit"])) {
-
-echo "string";
 
 	$username = $_POST["email"];
 	$password = $_POST["password"];
@@ -13,7 +11,6 @@ echo "string";
 	$username = strip_tags($username);
 	$username = addslashes($username);
 	
-	echo "111";
 	$sql = "select * from account where username = '$username' and passwords = '$password' ";
 	$db=new DataAccessHelper;
 	$db->connect();
@@ -22,17 +19,26 @@ echo "string";
 	echo $num_rows; 
 	if ($num_rows!=0) {
 		echo "1";
-		$form=mysqli_fetch_assoc($query);
-		if($form["form"]=="admin")
-			header('Location: index.html');
+		$row=mysqli_fetch_assoc($query);
+		$id_ac=$row["id"];
+		$username_ac=$row["username"];
+		$fullname_ac=$row["fullname"];
+		if($row["form"]=="admin")
+		{
+			$_SESSION['account'] = $id_ac;
+			$_SESSION['fullname'] = $fullname_ac;
+			header('Location: index.php');
+		}
 		else
-			echo "client";
+		{
+			$_SESSION['customer'] = $row['id'];
+			header('Location: ../../index.html');
+		}
 	}else{
-		echo "sai roi!";
-			//header('Location: index.html');
-
-	}
-
-	echo "string";
+		
+		header('Location: login.html');
+	}	
 }
+
+
 ?>

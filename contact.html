@@ -134,7 +134,7 @@
       <div class="row">
         <div class="col-lg-8 mb-4">
           <h3>Để lại tin nhắn cho chúng tôi</h3>
-          <form name="sentMessage" id="contactForm" novalidate action="mail/contact_me.php" method="POST">
+          <form  action="contact_me.php" method="POST">
             <div class="control-group form-group">
               <div class="controls">
                 <label>Họ tên:</label>
@@ -160,9 +160,10 @@
                 <textarea rows="10" cols="100" class="form-control" id="message" required data-validation-required-message="Please enter your message" maxlength="999" style="resize:none"></textarea>
               </div>
             </div>
-            <div id="success"></div>
+            
             <!-- For success/fail messages -->
-            <button type="submit" class="btn success" name="btn_submit">Gửi</button>
+            <input type="submit" class="btn success" name="btn_submit" value="Gửi" >
+            
           </form>
         </div>
 
