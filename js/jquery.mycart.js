@@ -1,8 +1,3 @@
-/*
-* jQuery myCart - v1.5 - 2017-10-23
-* http://asraf-uddin-ahmed.github.io/
-* Copyright (c) 2017 Asraf Uddin Ahmed; Licensed None
-*/
 
 (function ($) {
 
@@ -203,6 +198,7 @@
       ProductManager.clearProduct();
       $.each(options.cartItems, function() {
         ProductManager.setProduct(this.id, this.name, this.summary, this.price, this.quantity, this.image);
+        //here is problem
       });
     }
 
@@ -215,7 +211,7 @@
         '<div class="modal-content">' +
         '<div class="modal-header">' +
         '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-        '<h4 class="modal-title" id="myModalLabel"><span class="fa fa-shopping-cart shopping_bg"></span>Giỏ Hàng</h4>' +
+        '<h4 class="modal-title" id="myModalLabel" style="color:#4b9249;" ><span class="fa fa-shopping-cart shopping_bg"></span>Giỏ Hàng</h4>' +
         '</div>' +
         '<div class="modal-body">' +
         '<table class="table table-hover table-responsive" id="' + idCartTable + '"></table>' +
@@ -251,24 +247,23 @@
 
       $cartTable.append(products.length ?
         '<tr>' +
-        '<td></td>' +
-        '<td><strong>Total</strong></td>' +
+        
+        '<td colspan = "2"><strong>Tổng cộng</strong></td>' +
         '<td></td>' +
         '<td></td>' +
         '<td><strong id="' + idGrandTotal + '"></strong></td>' +
         '<td></td>' +
         '</tr>'
-        : '<div class="alert alert-danger" role="alert" id="' + idEmptyCartMessage + '">Your cart is empty</div>'
+        : '<div class="alert alert-danger" role="alert" id="' + idEmptyCartMessage + '">Bạn chưa mua gì cả! :(</div>'
         );
 
       var discountPrice = options.getDiscountPrice(products, ProductManager.getTotalPrice(), ProductManager.getTotalQuantity());
       if(products.length && discountPrice !== null) {
         $cartTable.append(
-          '<tr style="color: red">' +
-          '<td></td>' +
-          '<td><strong>Total (including discount)</strong></td>' +
-          '<td></td>' +
-          '<td></td>' +
+          '<tr style="color: red;" >' +
+          '<td colspan = "4"><strong >Tổng cộng (bao gồm khuyến mãi)</strong></td>' +
+         
+          
           '<td><strong id="' + idDiscountPrice + '"></strong></td>' +
           '<td></td>' +
           '</tr>'

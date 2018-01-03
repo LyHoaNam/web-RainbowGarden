@@ -32,7 +32,7 @@ if (isset($_POST["btn_submit"])) {
 		else
 		{
 			$_SESSION['customer'] = $row['id'];
-			header('Location: ../../index.html');
+			header('Location: ../../index.php');
 		}
 	}else{
 		

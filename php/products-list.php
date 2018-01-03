@@ -8,7 +8,7 @@ if(isset($_GET['trang'])){
 }
 $start = ($trang - 1) * $size;
 if(isset($_GET['tukhoa'])){
-  $query =$db->executeQuery ("select * from product where (name like '{$_GET['tukhoa']}' or price = {$_GET['tukhoa']}) limit {$start}, {$size}");
+  $query =$db->executeQuery ("select * from product where (name like '{$_GET['tukhoa']}' or price = {$_GET['tukhoa']} and category= {$danhmuccon}) limit {$start}, {$size}");
 }
 else
 {
@@ -38,7 +38,9 @@ while($row=mysqli_fetch_assoc($query)){
      </h4>
      <span style="width: 100%">
       <strong class="Giat" name="price"><?php  echo $price ?>.000&nbsp;₫</strong>
-      <i class="fa fa-shopping-cart shopping_bg add-to-cart my-cart-btn" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" data-id="<?php echo $id ?>" data-name="<?php echo $name ?>" data-summary="<?php echo $name?>" data-price="<?php echo $price  ?>" data-quantity="1" data-image="<?php echo $imagi ?>"></i>
+      <span class=" productCart">
+      <i class="fa fa-shopping-cart shopping_bg add-to-cart my-cart-btn" aria-hidden="true"  data-id="<?php echo $id ?>" data-name="<?php echo $name ?>" data-summary="<?php echo $name?>" data-price="<?php echo $price  ?>" data-quantity="1" data-image="<?php echo $imagi ?>"></i>
+    </span>
     </span>
   </div>
 </div>

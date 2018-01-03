@@ -1,0 +1,42 @@
+.bg-dark {
+    background-color: #343a40!important;
+}
+.fn-bran
+{
+	color:#4b9249;
+}
+.fn-bran-light
+{
+	color:#a1e6a1 !important;
+}
+.btnaddproduct
+{
+	
+    padding: 4px 12px;
+   
+
+}
+.btnright
+{
+	
+	text-align: right;
+}
+.btnright60
+{
+
+	margin-left: 60%;
+}
+.labelProduct
+{
+	padding-left: 30px;
+	color:#4b9249 !important;
+}
+.pageprlink
+{
+	color: #4b9249 !important;
+}
+.pageprlink:hover
+{
+	background-color: #343a40;
+	color:#a1e6a1;
+}
