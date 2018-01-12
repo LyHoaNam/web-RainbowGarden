@@ -32,7 +32,7 @@ $db->connect();
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand GreenBrand" href="index.html"><img src="img/logobn.png">RainBow Garden</a>
+      <a class="navbar-brand GreenBrand" href="index.php"><img src="img/logobn.png">RainBow Garden</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -40,7 +40,7 @@ $db->connect();
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
 
-           <a class="nav-link" href="caymini.html">Cây mini</a>
+           <a class="nav-link" href="caymini.php">Cây mini</a>
          </li>
          <li class="nav-item">
           <a class="nav-link" href="caykhongkhi.php" style="color: #a1e6a1 !important">Cây không khí</a>
@@ -50,14 +50,16 @@ $db->connect();
         </li>
 
         <li>
+          <form class="input-with-submit header-search" method="GET" >
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search"/>
+            <input type="text" class="form-control" placeholder="Tìm thứ gì đó?" name="tukhoa">
             <span class="input-group-button">
-              <button class="btn btn-default" style="background-color: #4b9249">
+              <button class="btn btn-default" style="background-color: #4b9249" type="submit">
                 <i class="fa fa-search"></i>
               </button>
             </span>
           </div>
+        </form>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link" href="contact.html">
@@ -74,48 +76,48 @@ $db->connect();
           </span>   
         </li>
         
-              <li class="dropdown navRbaccount">
+        <li class="dropdown navRbaccount">
           <a class=" fn-bran-light" data-toggle="dropdown" href="#">
             <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
           </a>
           <ul class="dropdown-menu dropdown-user" >
-              <?php 
-              if(!isset($_SESSION['customer'])&&!isset($_SESSION['account']))
-              {
-                ?>
-           <li><a href="admin/pages/login.html"><i class="fa fa-sign-in fa-fw"></i> Đăng nhập</a>
+            <?php 
+            if(!isset($_SESSION['customer'])&&!isset($_SESSION['account']))
+            {
+              ?>
+              <li><a href="admin/pages/login.html"><i class="fa fa-sign-in fa-fw"></i> Đăng nhập</a>
               </li>
               <li><a href="#"><i class="fa fa-user fa-fw"></i> Tạo tài khoản</a>
               </li>
-               
+
               <?php
-                 }
-              if(isset($_SESSION['customer']))
-              {
-                ?>
-                 <li><a href="#"><i class="fa fa-user fa-fw"></i> Tài khoản</a>
+            }
+            if(isset($_SESSION['customer']))
+            {
+              ?>
+              <li><a href="#"><i class="fa fa-user fa-fw"></i> Tài khoản</a>
               </li>
               <li class="divider"></li>
               <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
               </li>
-                <?php
-              }
-              if(isset($_SESSION['account']))
-              {
-                ?>
-                <li><a href="admin/pages/index.php"><i class="fa fa-gear fa-fw"></i> Đến trang admin</a>
+              <?php
+            }
+            if(isset($_SESSION['account']))
+            {
+              ?>
+              <li><a href="admin/pages/index.php"><i class="fa fa-gear fa-fw"></i> Đến trang admin</a>
               </li>
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i>Tài khoản</a>
+              <li><a href="#"><i class="fa fa-user fa-fw"></i>Tài khoản</a>
               </li>
               
               <li class="divider"></li>
               <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
               </li>
-                <?php
-              }
-              ?>
-             
-            </ul>
+              <?php
+            }
+            ?>
+
+          </ul>
         </li>
       </ul>
     </div>
@@ -133,7 +135,7 @@ $db->connect();
 
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
-      <a href="index.html">Trang Chủ</a>
+      <a href="index.php">Trang Chủ</a>
     </li>
     <li class="breadcrumb-item active">Cây không khí</li>
   </ol>
@@ -151,7 +153,7 @@ $db->connect();
 </style>
 <div class="row">
 
-<?php 
+  <?php 
   $size = 8;
   $danhmuccon = 2;
   $tongsotrang=0;
@@ -164,30 +166,30 @@ $db->connect();
     $result=$db->executeQuery("SELECT count(id) countid from product where category=$danhmuccon");
   if($result)
   {
-  $row=mysqli_fetch_assoc($result);
-  $numpd= $row["countid"];
-  $tongsotrang=$numpd / 8;
-  if($numpd%8 ==0)
-  $themsotrang=0;
-else
-  $themsotrang=1;
-  include("php/products-list.php"); }?>
+    $row=mysqli_fetch_assoc($result);
+    $numpd= $row["countid"];
+    $tongsotrang=$numpd / 8;
+    if($numpd%8 ==0)
+      $themsotrang=0;
+    else
+      $themsotrang=1;
+    include("php/products-list.php"); }?>
 
-</div>
+  </div>
 
-<!-- Pagination -->
-<div>
- <ul class="pagination justify-content-center" >
-  <?php 
-  for($i=1;$i<=$tongsotrang+$themsotrang;$i++)
-  {
-    echo "<li class=\"page-item\" >
-    <a class=\"pageprlink page-link\"  href=\"?trang={$i}\"
-    style=\" color: #4b9249\">{$i}</a>
-    </li> ";
-  }
-  ?>
-</ul>
+  <!-- Pagination -->
+  <div>
+   <ul class="pagination justify-content-center" >
+    <?php 
+    for($i=1;$i<=$tongsotrang+$themsotrang;$i++)
+    {
+      echo "<li class=\"page-item\" >
+      <a class=\"pageprlink page-link\"  href=\"?trang={$i}\"
+      style=\" color: #4b9249\">{$i}</a>
+      </li> ";
+    }
+    ?>
+  </ul>
 </div>
 
 </div>
@@ -242,10 +244,10 @@ else
       cartItems: [
       <?php
       if(isset($_SESSION['product']))
-      {?>
-        {id: <?php echo $_SESSION['product'][$i]['id'] ?>, name: <?php echo $_SESSION['product'][$i]['name']?>, summary: <?php echo $_SESSION['product'][$i]['summary'] ?>, price: <?php echo $_SESSION['product'][$i]['price']?>, quantity:<?php echo $_SESSION['product'][$i]['quantity']?>, image:<?php echo $_SESSION['product'][$i]['image']?>} ,
-      <?php } ?>
-      ],
+        {?>
+          {id: <?php echo $_SESSION['product'][$i]['id'] ?>, name: <?php echo $_SESSION['product'][$i]['name']?>, summary: <?php echo $_SESSION['product'][$i]['summary'] ?>, price: <?php echo $_SESSION['product'][$i]['price']?>, quantity:<?php echo $_SESSION['product'][$i]['quantity']?>, image:<?php echo $_SESSION['product'][$i]['image']?>} ,
+          <?php } ?>
+          ],
       //hieu ung nhay vao gio
       clickOnAddToCart: function($addTocart){
         goToCartIcon($addTocart);
@@ -258,44 +260,35 @@ else
         console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
       },
       checkoutCart: function(products, totalPrice, totalQuantity) {
-     
+        var ajaxRequest = new XMLHttpRequest();
+        
+          ajaxRequest.onreadystatechange = function(){
+                  if(ajaxRequest.readyState == 4){
+                     window.alert(ajaxRequest.responseText);
+                  }
+               }
+           var queryString =new Array();
+       
+          $.each(products, function(){
+          queryString.push(this.id);
+          queryString.push(this.quantity);
+        
+        });
+          var jsonString = JSON.stringify(queryString);
+          ajaxRequest.open("POST", "Cart.php?p=" + jsonString, true);
+               ajaxRequest.send(null); 
+       
 
-      },
-      getDiscountPrice: function(products, totalPrice, totalQuantity) {
-        console.log("calculating discount", products, totalPrice, totalQuantity);
-        return totalPrice ;
-      }
-    });
+     },
+     getDiscountPrice: function(products, totalPrice, totalQuantity) {
+      console.log("calculating discount", products, totalPrice, totalQuantity);
+      return totalPrice ;
+    }
+  });
 
   });
 </script>
-<!--
-<script type="text/javascript" src="js/jquery_easing.js"></script>
-<script type="text/javascript">
 
-  jQuery(function($) {
-
-    $('.add-to-cart').click(function() {
-      var cart = $('.shopping_bg');
-      var imgtofly = $(this).parents('div.cart_items').find('a.product-image img').eq(0);
-      if (imgtofly) {
-        var imgclone = imgtofly.clone()
-        .offset({ top:imgtofly.offset().top, left:imgtofly.offset().left })
-        .css({'opacity':'0.7', 'position':'absolute', 'height':'150px', 'width':'150px', 'z-index':'1000'})
-        .appendTo($('body'))
-        .animate({
-          'top':cart.offset().top + 10,
-          'left':cart.offset().left + 30,
-          'width':55,
-          'height':55
-        }, 1000, 'easeInElastic');
-        imgclone.animate({'width':0, 'height':0}, function(){ $(this).detach() });
-      }
-      return false;
-    });
-  });
-</script>
--->
 
 </body>
 

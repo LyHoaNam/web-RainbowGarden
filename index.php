@@ -52,254 +52,250 @@
   <!-- Navigation -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
-
-      <a class="navbar-brand GreenBrand" href="index.html"><img src="img/logobn.png"> Rainbow Garden</a>
+      <a class="navbar-brand GreenBrand" href="index.php"><img src="img/logobn.png">RainBow Garden</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="caymini.html">Cây mini</a>
 
+           <a class="nav-link" href="caymini.php">Cây mini</a>
+         </li>
+         <li class="nav-item">
+          <a class="nav-link" href="caykhongkhi.php">Cây không khí</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cayhandmade.php">Cây handmade</a>
+        </li>
 
-
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="caykhongkhi.php">Cây không khí</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="cayhandmade.php">Cây handmade</a>
-          </li>
-
-
-          <li>
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search"/>
-              <span class="input-group-button">
-                <button class="btn btn-default" style="background-color: #4b9249">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link" href="contact.html">
-              Liên hệ
-            </a>
-          </li>
-          <li style="width: 40px !important; height: 40px; padding-left: 3px;" class="dropdown">
-            <span class="my-cart-icon"   >
-              <span class="navRbcart">
-
-                <i class=" fa fa-shopping-cart shopping_bg" aria-hidden="true"></i>
-              </span>
-              <span class="badge badge-notify my-cart-badge"></span>
-
-            </span>   
-          </li>
-          <li class="dropdown navRbaccount">
-            <a class=" fn-bran-light" data-toggle="dropdown" href="#">
-              <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-            </a>
-            <ul class="dropdown-menu dropdown-user" >
-              <?php 
-              if(!isset($_SESSION['customer'])&&!isset($_SESSION['account']))
-              {
-                ?>
-           <li><a href="admin/pages/login.html"><i class="fa fa-sign-in fa-fw"></i> Đăng nhập</a>
+        <li>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search"/>
+            <span class="input-group-button">
+              <button class="btn btn-default" style="background-color: #4b9249">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="contact.html">
+            Liên hệ
+          </a>
+        </li>
+        <li style="width: 40px !important; height: 40px; padding-left: 3px;">
+          <span class="my-cart-icon" ">
+            <span class="navRbcart">
+              <i class=" fa fa-shopping-cart shopping_bg" aria-hidden="true"></i>
+            </span>
+            <span class="badge badge-notify my-cart-badge"></span>
+            
+          </span>   
+        </li>
+        
+        <li class="dropdown navRbaccount">
+          <a class=" fn-bran-light" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-user" >
+            <?php 
+            if(!isset($_SESSION['customer'])&&!isset($_SESSION['account']))
+            {
+              ?>
+              <li><a href="admin/pages/login.html"><i class="fa fa-sign-in fa-fw"></i> Đăng nhập</a>
               </li>
               <li><a href="#"><i class="fa fa-user fa-fw"></i> Tạo tài khoản</a>
               </li>
-               
+
               <?php
-                 }
-              if(isset($_SESSION['customer']))
-              {
-                ?>
-                 <li><a href="#"><i class="fa fa-user fa-fw"></i> Tài khoản</a>
+            }
+            if(isset($_SESSION['customer']))
+            {
+              ?>
+              <li><a href="#"><i class="fa fa-user fa-fw"></i> Tài khoản</a>
               </li>
               <li class="divider"></li>
               <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
               </li>
-                <?php
-              }
-              if(isset($_SESSION['account']))
-              {
-                ?>
-                <li><a href="admin/pages/index.php"><i class="fa fa-gear fa-fw"></i> Đến trang admin</a>
+              <?php
+            }
+            if(isset($_SESSION['account']))
+            {
+              ?>
+              <li><a href="admin/pages/index.php"><i class="fa fa-gear fa-fw"></i> Đến trang admin</a>
               </li>
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i>Tài khoản</a>
+              <li><a href="#"><i class="fa fa-user fa-fw"></i>Tài khoản</a>
               </li>
               
               <li class="divider"></li>
               <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
               </li>
-                <?php
-              }
-              ?>
-             
-            </ul>
-          </li>
-        </ul>
+              <?php
+            }
+            ?>
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      <div class="carousel-item active" style="background-image: url('img/bg-1.jpg')">
+
+
+
+        <div class="carousel-caption d-none d-md-block">
+
+
+
+
+          <h1 style="text-shadow: 1px 1px 2px black">Làm việc với niềm cảm hứng</h1>
+          <p>Hãy chọn loại cây bạn thích nó sẽ giúp bạn làm việc hiệu quả hơn</p>
+          <a href="cayhandmade.php" class="button" style="transition: background-color 0.3s ease-out 0s; min-height: 0px; min-width: 0px; line-height: 18px; border-width: 1px; margin: 0px; padding: 15px 29px; letter-spacing: 0px; font-size: 20px;">XEM NGAY</a>
+        </div>
+      </div>
+      <!-- Slide Two - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('img/bg-2.jpg')">
+        <div class="carousel-caption d-none d-md-block">
+          <h1 style="text-shadow: 1px 1px 2px black">Màu xanh làm tăng sức sống</h1>
+          <p>Hãy để màu xanh trong cuộc sống của bạn, nó sẽ khiến bạn mạnh mẽ hơn.</p>
+          <a href="caykhongkhi.php" class="button" style="transition: background-color 0.3s ease-out 0s; min-height: 0px; min-width: 0px; line-height: 18px; border-width: 1px; margin: 0px; padding: 15px 29px; letter-spacing: 0px; font-size: 20px;">XEM NGAY</a>
+        </div>
+      </div>
+      <!-- Slide Three - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('img/bg-3.jpg')">
+        <div class="carousel-caption d-none d-md-block">
+          <h1 style="text-shadow: 1px 1px 2px black" >Thay đổi nhỏ hiệu quả lớn</h1>
+          <p>Chỉ cần đặt vài chậu hoa ở những nơi được gọi là nhàm chán và nó sẽ làm nơi đó sinh động hơn</p>
+          <a href="cayhandmade.php" class="button" style="transition: background-color 0.3s ease-out 0s; min-height: 0px; min-width: 0px; line-height: 18px; border-width: 1px; margin: 0px; padding: 15px 29px; letter-spacing: 0px; font-size: 20px;">XEM NGAY</a>
+        </div>
       </div>
     </div>
-  </nav>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</header>
 
-  <header>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('img/bg-1.jpg')">
-
-
-
-          <div class="carousel-caption d-none d-md-block">
+<!-- Page Content -->
+<div class="container">
 
 
+  <h1 class="my-4"> </h1>
 
 
-            <h1 style="text-shadow: 1px 1px 2px black">Làm việc với niềm cảm hứng</h1>
-            <p>Hãy chọn loại cây bạn thích nó sẽ giúp bạn làm việc hiệu quả hơn</p>
-            <a href="cayhandmade.php" class="button" style="transition: background-color 0.3s ease-out 0s; min-height: 0px; min-width: 0px; line-height: 18px; border-width: 1px; margin: 0px; padding: 15px 29px; letter-spacing: 0px; font-size: 20px;">XEM NGAY</a>
-          </div>
-        </div>
-        <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('img/bg-2.jpg')">
-          <div class="carousel-caption d-none d-md-block">
-            <h1 style="text-shadow: 1px 1px 2px black">Màu xanh làm tăng sức sống</h1>
-            <p>Hãy để màu xanh trong cuộc sống của bạn, nó sẽ khiến bạn mạnh mẽ hơn.</p>
-            <a href="caykhongkhi.php" class="button" style="transition: background-color 0.3s ease-out 0s; min-height: 0px; min-width: 0px; line-height: 18px; border-width: 1px; margin: 0px; padding: 15px 29px; letter-spacing: 0px; font-size: 20px;">XEM NGAY</a>
-          </div>
-        </div>
-        <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('img/bg-3.jpg')">
-          <div class="carousel-caption d-none d-md-block">
-            <h1 style="text-shadow: 1px 1px 2px black" >Thay đổi nhỏ hiệu quả lớn</h1>
-            <p>Chỉ cần đặt vài chậu hoa ở những nơi được gọi là nhàm chán và nó sẽ làm nơi đó sinh động hơn</p>
-            <a href="cayhandmade.php" class="button" style="transition: background-color 0.3s ease-out 0s; min-height: 0px; min-width: 0px; line-height: 18px; border-width: 1px; margin: 0px; padding: 15px 29px; letter-spacing: 0px; font-size: 20px;">XEM NGAY</a>
-          </div>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </header>
-
-  <!-- Page Content -->
-  <div class="container">
-
-
-    <h1 class="my-4"> </h1>
-    
-
-    <!-- Marketing Icons Section -->
-    <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="card" >
-          <h4 class="card-header Bmiddle">Cây mini để bàn</h4>
-          <div class="CCard1">
-            <div class="figure banner-with-effects effect-oscar green-button with-button">
-              <img src="img/deban.jpg" alt="" style="width: 100%">
-              <div class="figcaption simple-banner">
-              </div>
-              <a href="caymini.php" class="center center" rel="nofollow">XEM THÊM</a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card" >
-          <h4 class="card-header Bmiddle">Cây không khí</h4>
-          <div class="CCard1 Eimg">
-            <div class="figure banner-with-effects effect-oscar green-button with-button">
-              <img src="img/khongkhi.jpg" alt="" style="width: 100%">
-              <div class="figcaption simple-banner">
-              </div>
-              <a href="caykhongkhi.php" class="center center" rel="nofollow">XEM THÊM</a>
-            </div> 
-
-          </div>
-
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card" >
-          <h4 class="card-header Bmiddle">Cây handmade</h4>
-          <div class="CCard1 Eimg">
-           <div class="figure banner-with-effects effect-oscar green-button with-button">
-            <img src="img/handmade.jpg" alt="" style="width: 100%">
+  <!-- Marketing Icons Section -->
+  <div class="row">
+    <div class="col-lg-4 mb-4">
+      <div class="card" >
+        <h4 class="card-header Bmiddle">Cây mini để bàn</h4>
+        <div class="CCard1">
+          <div class="figure banner-with-effects effect-oscar green-button with-button">
+            <img src="img/deban.jpg" alt="" style="width: 100%">
             <div class="figcaption simple-banner">
             </div>
-            <a href="cayhandmade.php" class="center center" rel="nofollow">XEM THÊM</a>
+            <a href="caymini.php" class="center center" rel="nofollow">XEM THÊM</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-lg-4 mb-4">
+      <div class="card" >
+        <h4 class="card-header Bmiddle">Cây không khí</h4>
+        <div class="CCard1 Eimg">
+          <div class="figure banner-with-effects effect-oscar green-button with-button">
+            <img src="img/khongkhi.jpg" alt="" style="width: 100%">
+            <div class="figcaption simple-banner">
+            </div>
+            <a href="caykhongkhi.php" class="center center" rel="nofollow">XEM THÊM</a>
           </div> 
+
         </div>
 
       </div>
     </div>
-  </div>
-  <!-- /.row -->
-
-  <!-- Portfolio Section -->
-
-
-  <div  class="Sanpham">
-    <h4 >Các sản phẩm nổi bật</h4>
-  </div>
-  <div class="row">
-
-    <div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
-
-      <div class="card h-348 cart_items">
-        <div class=" dropdown ">
-          <a href=" sanpham.html" class="product-image"><img class="card-img-top" src="img/bn1.jpg" alt=""></a>
-          <div class="dropdown-content"><img src="img/bn1.jpg" width="400" height="400"></div>
-        </div>
-        <div class="card-body" style=" 
-
-        ">
-        <h4 class="card-title Namet">
-          Cây không khí nhân sâm
-        </h4>
-
-        <span style="width: 100%">
-          <strong class="Giat">100.000&nbsp;₫</strong>
-          <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-
-
-        </span>
+    <div class="col-lg-4 mb-4">
+      <div class="card" >
+        <h4 class="card-header Bmiddle">Cây handmade</h4>
+        <div class="CCard1 Eimg">
+         <div class="figure banner-with-effects effect-oscar green-button with-button">
+          <img src="img/handmade.jpg" alt="" style="width: 100%">
+          <div class="figcaption simple-banner">
+          </div>
+          <a href="cayhandmade.php" class="center center" rel="nofollow">XEM THÊM</a>
+        </div> 
       </div>
+
     </div>
   </div>
-  <div class="col-md-4 col-sm-6 col-lg-3  portfolio-item">
-    <div class="card h-100 cart_items">
-     <div class=" dropdown">
-      <a href="sanpham.html" class="product-image"><img class="card-img-top" src="img/bn2.jpg" alt=""></a>
-      <div class="dropdown-content"><img src="img/bn2.jpg" width="400" height="400   "></div>
-    </div>
-    <div class="card-body">
+</div>
+<!-- /.row -->
+
+<!-- Portfolio Section -->
+
+
+<div  class="Sanpham">
+  <h4 >Các sản phẩm nổi bật</h4>
+</div>
+<div class="row">
+
+  <div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
+
+    <div class="card h-348 cart_items">
+      <div class=" dropdown ">
+        <a href=" sanpham.html" class="product-image"><img class="card-img-top" src="img/bn1.jpg" alt=""></a>
+        <div class="dropdown-content"><img src="img/bn1.jpg" width="400" height="400"></div>
+      </div>
+      <div class="card-body" style=" 
+
+      ">
       <h4 class="card-title Namet">
-        Xương rồng nhỏ GX103
+        Cây không khí nhân sâm
       </h4>
-      <span style="width: 100%">
-        <strong class="Giat">70.000&nbsp;₫</strong>
-        <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-      </span>
 
+      <span style="width: 100%">
+        <strong class="Giat">100.000&nbsp;₫</strong>
+        <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
+
+
+      </span>
     </div>
   </div>
+</div>
+<div class="col-md-4 col-sm-6 col-lg-3  portfolio-item">
+  <div class="card h-100 cart_items">
+   <div class=" dropdown">
+    <a href="sanpham.html" class="product-image"><img class="card-img-top" src="img/bn2.jpg" alt=""></a>
+    <div class="dropdown-content"><img src="img/bn2.jpg" width="400" height="400   "></div>
+  </div>
+  <div class="card-body">
+    <h4 class="card-title Namet">
+      Xương rồng nhỏ GX103
+    </h4>
+    <span style="width: 100%">
+      <strong class="Giat">70.000&nbsp;₫</strong>
+      <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
+    </span>
+
+  </div>
+</div>
 </div>
 <div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
   <div class="card h-100 cart_items">
@@ -474,66 +470,106 @@
     </div>
   </div>
 
-</div></div></div></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <!-- /.row -->
 
 <hr>
+</div>
 
-<!-- Call to Action Section -->
-<div class="row mb-4">
-       <!-- <div class="col-md-8">
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
-        </div>
-        <div class="col-md-4">
-          <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
-        </div>-->
-      </div>
-
+<footer class="py-5 bg-dark">
+  <div class="container">
+    <div class="row">
+      <p class="m-0 text-center text-white" style="color: #a1e6a1 !important">Rainbow Graden là nhóm các bạn trẻ năng động được thành lập từ môn Phát triển ứng dụng web. Với mới mong muốn mang đến cuộc sống nhiều màu xanh hơn. </p>
     </div>
-    <!-- /.container -->
+  </div>
+  <!-- /.container -->
+</footer>
 
-    <!-- Footer -->
-    <footer class="py-5 bg-dark">
-      <div class="container">
-        <div class="row">
-          <p class="m-0 text-center text-white" style="color: #a1e6a1 !important">Rainbow Graden là nhóm các bạn trẻ năng động được thành lập từ môn Phát triển ứng dụng web. Với mới mong muốn mang đến cuộc sống nhiều màu xanh hơn. </p>
-        </div>
-      </div>
-      <!-- /.container -->
-    </footer>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper/popper.min.js"></script>
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script type='text/javascript' src="js/jquery.mycart.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery_easing.js"></script>
+<script type="text/javascript">
+  $(function () {
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery_easing.js"></script>
-    <script type="text/javascript">
-
-      jQuery(function($) {
-
-        $('.add-to-cart').click(function() {
-          var cart = $('.shopping_bg');
-          var imgtofly = $(this).parents('div.cart_items').find('a.product-image img').eq(0);
-          if (imgtofly) {
-            var imgclone = imgtofly.clone()
-            .offset({ top:imgtofly.offset().top, left:imgtofly.offset().left })
-            .css({'opacity':'0.7', 'position':'absolute', 'height':'150px', 'width':'150px', 'z-index':'1000'})
-            .appendTo($('body'))
-            .animate({
-              'top':cart.offset().top + 10,
-              'left':cart.offset().left + 30,
-              'width':55,
-              'height':55
-            }, 1000, 'easeInElastic');
-            imgclone.animate({'width':0, 'height':0}, function(){ $(this).detach() });
-          }
-          return false;
-        });
+    var goToCartIcon = function($addTocartBtn){
+      var $cartIcon = $(".my-cart-icon");
+      var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
+      $addTocartBtn.prepend($image);
+      var position = $cartIcon.position();
+      $image.animate({
+        top: position.top,
+        left: position.left
+      }, 500 , "linear", function() {
+        $image.remove();
       });
-    </script>
-  </body>
+    }
 
-  </html>
+    $('.my-cart-btn').myCart({
+      currencySymbol: '$',
+      classCartIcon: 'my-cart-icon',
+      classCartBadge: 'my-cart-badge',
+      classProductQuantity: 'my-product-quantity',
+      classProductRemove: 'my-product-remove',
+      classCheckoutCart: 'my-cart-checkout',
+      affixCartIcon: true,
+      showCheckoutModal: true,
+      numberOfDecimals: 2,
+      cartItems: [
+      <?php
+      if(isset($_SESSION['product']))
+        {?>
+          {id: <?php echo $_SESSION['product'][$i]['id'] ?>, name: <?php echo $_SESSION['product'][$i]['name']?>, summary: <?php echo $_SESSION['product'][$i]['summary'] ?>, price: <?php echo $_SESSION['product'][$i]['price']?>, quantity:<?php echo $_SESSION['product'][$i]['quantity']?>, image:<?php echo $_SESSION['product'][$i]['image']?>} ,
+          <?php } ?>
+          ],
+      //hieu ung nhay vao gio
+      clickOnAddToCart: function($addTocart){
+        goToCartIcon($addTocart);
+        
+      },
+      afterAddOnCart: function(products, totalPrice, totalQuantity) {
+        console.log("afterAddOnCart", products, totalPrice, totalQuantity);
+      },
+      clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+        console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+      },
+      checkoutCart: function(products, totalPrice, totalQuantity) {
+        var ajaxRequest = new XMLHttpRequest();
+        
+        ajaxRequest.onreadystatechange = function(){
+          if(ajaxRequest.readyState == 4){
+           window.alert(ajaxRequest.responseText);
+         }
+       }
+       var queryString =new Array();
+       
+       $.each(products, function(){
+        queryString.push(this.id);
+        queryString.push(this.quantity);
+        
+      });
+       var jsonString = JSON.stringify(queryString);
+       ajaxRequest.open("POST", "Cart.php?p=" + jsonString, true);
+       ajaxRequest.send(null); 
+       
+
+     },
+     getDiscountPrice: function(products, totalPrice, totalQuantity) {
+      console.log("calculating discount", products, totalPrice, totalQuantity);
+      return totalPrice ;
+    }
+  });
+
+  });
+</script>
+</body>
+
+</html>

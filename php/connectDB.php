@@ -32,7 +32,10 @@
  		$result = $GLOBALS['conn']->query($sql);
  		return $result;
  	}
-
+ 	public function lastIdInsert()
+ 	{
+		return  $GLOBALS['conn']->insert_id;		
+ 	}
  	public function close(){
  		mysqli_close($GLOBALS['conn']);
  	}

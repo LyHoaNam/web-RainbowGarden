@@ -40,13 +40,13 @@ $db->connect();
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
 
-           <a class="nav-link" href="caymini.php">Cây mini</a>
+           <a class="nav-link" href="caymini.php" style="color: #a1e6a1 !important">Cây mini</a>
          </li>
          <li class="nav-item">
           <a class="nav-link" href="caykhongkhi.php" >Cây không khí</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="cayhandmade.php" style="color: #a1e6a1 !important">Cây handmade</a>
+          <a class="nav-link" href="cayhandmade.php" >Cây handmade</a>
         </li>
 
         <li>
@@ -130,14 +130,14 @@ $db->connect();
   <!-- Page Heading/Breadcrumbs -->
   <br>
   <h1 class="GreenBrand">RainBow Garden
-    <small style="font-family: Arial">Cây handmade</small>
+    <small style="font-family: Arial">Cây mini</small>
   </h1>
 
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
       <a href="index.php">Trang Chủ</a>
     </li>
-    <li class="breadcrumb-item active">Cây handmade</li>
+    <li class="breadcrumb-item active">Cây mini</li>
   </ol>
 
   <style type="text/css">
@@ -155,7 +155,7 @@ $db->connect();
 
   <?php 
   $size = 8;
-  $danhmuccon = 3;
+  $danhmuccon = 1;
   $tongsotrang=0;
   if (isset($_GET['tukhoa'])) {
 
