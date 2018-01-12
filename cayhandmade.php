@@ -62,7 +62,7 @@ $db->connect();
         </form>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" href="contact.html">
+          <a class="nav-link" href="lienhe.php">
             Liên hệ
           </a>
         </li>

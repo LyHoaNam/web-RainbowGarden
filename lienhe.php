@@ -1,3 +1,10 @@
+<?php 
+@session_start();
+
+include "php/connectDB.php";
+$db=new DataAccessHelper;
+$db->connect();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,51 +44,99 @@
   <body>
 
     <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand GreenBrand" href="index.html"><img src="img/logobn.png"> Rainbow Garden</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="caymini.html">Cây mini</a>
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand GreenBrand" href="index.php"><img src="img/logobn.png">RainBow Garden</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
 
+           <a class="nav-link" href="caymini.php">Cây mini</a>
+         </li>
+         <li class="nav-item">
+          <a class="nav-link" href="caykhongkhi.php" >Cây không khí</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="cayhandmade.php" >Cây handmade</a>
+        </li>
 
-
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="caykhongkhi.html">Cây không khí</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="cayhandmade.html">Cây handmade</a>
-            </li>
+        <li>
+          <form class="input-with-submit header-search" method="GET" >
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Tìm thứ gì đó?" name="tukhoa">
+            <span class="input-group-button">
+              <button class="btn btn-default" style="background-color: #4b9249" type="submit">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </form>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="lienhe.php" style="color: #a1e6a1 !important">
+            Liên hệ
+          </a>
+        </li>
+        <li style="width: 40px !important; height: 40px; padding-left: 3px;">
+          <span class="my-cart-icon" ">
+            <span class="navRbcart">
+              <i class=" fa fa-shopping-cart shopping_bg" aria-hidden="true"></i>
+            </span>
+            <span class="badge badge-notify my-cart-badge"></span>
             
-            <li>
-              <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search"/>
-                            <span class="input-group-button">
-                                <button class="btn btn-default" style="background-color: #4b9249">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                </li>
-                 <li class="nav-item dropdown">
-                <a class="nav-link" href="contact.html"  style="color: #a1e6a1 !important">
-                Liên hệ
-              </a>
-            </li>
-             <li>
-          <button class="btn btnGH" style="background-color: #4b9249">
-          <i class="fa fa-shopping-cart shopping_bg" aria-hidden="true"></i>
-          </button>       
-      </li>
+          </span>   
+        </li>
+        
+        <li class="dropdown navRbaccount">
+          <a class=" fn-bran-light" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+          </a>
+          <ul class="dropdown-menu dropdown-user" >
+            <?php 
+            if(!isset($_SESSION['customer'])&&!isset($_SESSION['account']))
+            {
+              ?>
+              <li><a href="admin/pages/login.html"><i class="fa fa-sign-in fa-fw"></i> Đăng nhập</a>
+              </li>
+              <li><a href="#"><i class="fa fa-user fa-fw"></i> Tạo tài khoản</a>
+              </li>
+
+              <?php
+            }
+            if(isset($_SESSION['customer']))
+            {
+              ?>
+              <li><a href="#"><i class="fa fa-user fa-fw"></i> Tài khoản</a>
+              </li>
+              <li class="divider"></li>
+              <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i> Đăng xuất</a>
+              </li>
+              <?php
+            }
+            if(isset($_SESSION['account']))
+            {
+              ?>
+              <li><a href="admin/pages/index.php"><i class="fa fa-gear fa-fw"></i> Đến trang admin</a>
+              </li>
+              <li><a href="#"><i class="fa fa-user fa-fw"></i>Tài khoản</a>
+              </li>
+              
+              <li class="divider"></li>
+              <li><a href="php/logout.php"><i class="fa fa-sign-out fa-fw"></i>Đăng xuất</a>
+              </li>
+              <?php
+            }
+            ?>
+
           </ul>
-        </div>
-      </div>
-    </nav>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 
     <!-- Page Content -->
     <div class="container">
@@ -134,7 +189,7 @@
       <div class="row">
         <div class="col-lg-8 mb-4">
           <h3>Để lại tin nhắn cho chúng tôi</h3>
-          <form  action="contact_me.php" method="POST">
+          <form  method="POST">
             <div class="control-group form-group">
               <div class="controls">
                 <label>Họ tên:</label>
@@ -194,3 +249,15 @@
   </body>
 
 </html>
+<?php
+  if(isset($_POST["btn_submi"]))
+  {
+      $name=$_POST['name'];
+      $phone=$_POST['phone'];
+      $email=$_POST['email'];
+      $message=$_POST['message'];
+
+      $sql="INSERT INTO `feedback`( `name`, `phone`, `email`, `content`) VALUES ('$name','$phone','$email','$message')";
+
+  }
+?>
