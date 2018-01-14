@@ -377,6 +377,7 @@ $db->connect();
 <script type='text/javascript' src="js/jquery.mycart.js"></script>
 
 <script type="text/javascript" src="js/jquery_easing.js"></script>
+
 <script type="text/javascript">
   $(function () {
 
@@ -404,11 +405,9 @@ $db->connect();
       showCheckoutModal: true,
       numberOfDecimals: 2,
       cartItems: [
-      <?php
-      if(isset($_SESSION['product']))
-        {?>
-          {id: <?php echo $_SESSION['product'][$i]['id'] ?>, name: <?php echo $_SESSION['product'][$i]['name']?>, summary: <?php echo $_SESSION['product'][$i]['summary'] ?>, price: <?php echo $_SESSION['product'][$i]['price']?>, quantity:<?php echo $_SESSION['product'][$i]['quantity']?>, image:<?php echo $_SESSION['product'][$i]['image']?>} ,
-          <?php } ?>
+     
+     
+          
           ],
       //hieu ung nhay vao gio
       clickOnAddToCart: function($addTocart){
@@ -423,10 +422,10 @@ $db->connect();
       },
       checkoutCart: function(products, totalPrice, totalQuantity) {
         var ajaxRequest = new XMLHttpRequest();
-
-        ajaxRequest.onreadystatechange = function(){
-          if(ajaxRequest.readyState == 4){
-            if(Object.keys(ajaxRequest.responseText).length<=3)
+        
+          ajaxRequest.onreadystatechange = function(){
+                  if(ajaxRequest.readyState == 4){
+                                 if(Object.keys(ajaxRequest.responseText).length<=3)
             {
               if(confirm("Bạn chưa đăng nhập! Chuyển đến trang đăng nhập"))
               {
@@ -435,18 +434,18 @@ $db->connect();
            }
            else
              window.alert(ajaxRequest.responseText);
-         }
-       }
-       var queryString =new Array();
+                  }
+               }
+           var queryString =new Array();
        
-       $.each(products, function(){
-        queryString.push(this.id);
-        queryString.push(this.quantity);
+          $.each(products, function(){
+          queryString.push(this.id);
+          queryString.push(this.quantity);
         
-      });
-       var jsonString = JSON.stringify(queryString);
-       ajaxRequest.open("POST", "Cart.php?p=" + jsonString, true);
-       ajaxRequest.send(null); 
+        });
+          var jsonString = JSON.stringify(queryString);
+          ajaxRequest.open("POST", "Cart.php?p=" + jsonString, true);
+               ajaxRequest.send(null); 
        
 
      },
@@ -458,6 +457,7 @@ $db->connect();
 
   });
 </script>
+
 </body>
 
 </html>

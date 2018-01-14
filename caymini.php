@@ -242,11 +242,9 @@ $db->connect();
       showCheckoutModal: true,
       numberOfDecimals: 2,
       cartItems: [
-      <?php
-      if(isset($_SESSION['product']))
-        {?>
-          {id: <?php echo $_SESSION['product'][$i]['id'] ?>, name: <?php echo $_SESSION['product'][$i]['name']?>, summary: <?php echo $_SESSION['product'][$i]['summary'] ?>, price: <?php echo $_SESSION['product'][$i]['price']?>, quantity:<?php echo $_SESSION['product'][$i]['quantity']?>, image:<?php echo $_SESSION['product'][$i]['image']?>} ,
-          <?php } ?>
+     
+     
+          
           ],
       //hieu ung nhay vao gio
       clickOnAddToCart: function($addTocart){
