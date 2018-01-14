@@ -239,13 +239,96 @@ $db->connect();
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper/popper.min.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script src="js/jquery-2.2.3.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.mycart.js"></script>
 
     <!-- Contact form JavaScript -->
     <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
+    <script type="text/javascript">
+  $(function () {
 
+    var goToCartIcon = function($addTocartBtn){
+      var $cartIcon = $(".my-cart-icon");
+      var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
+      $addTocartBtn.prepend($image);
+      var position = $cartIcon.position();
+      $image.animate({
+        top: position.top,
+        left: position.left
+      }, 500 , "linear", function() {
+        $image.remove();
+      });
+    }
+
+    $('.my-cart-btn').myCart({
+      currencySymbol: '$',
+      classCartIcon: 'my-cart-icon',
+      classCartBadge: 'my-cart-badge',
+      classProductQuantity: 'my-product-quantity',
+      classProductRemove: 'my-product-remove',
+      classCheckoutCart: 'my-cart-checkout',
+      affixCartIcon: true,
+      showCheckoutModal: true,
+      numberOfDecimals: 2,
+      cartItems: [
+      <?php
+      if(isset($_SESSION['product']))
+        {?>
+          {id: <?php echo $_SESSION['product'][$i]['id'] ?>, name: <?php echo $_SESSION['product'][$i]['name']?>, summary: <?php echo $_SESSION['product'][$i]['summary'] ?>, price: <?php echo $_SESSION['product'][$i]['price']?>, quantity:<?php echo $_SESSION['product'][$i]['quantity']?>, image:<?php echo $_SESSION['product'][$i]['image']?>} ,
+          <?php } ?>
+          ],
+      //hieu ung nhay vao gio
+      clickOnAddToCart: function($addTocart){
+        goToCartIcon($addTocart);
+        
+      },
+      afterAddOnCart: function(products, totalPrice, totalQuantity) {
+        console.log("afterAddOnCart", products, totalPrice, totalQuantity);
+      },
+      clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+        console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+      },
+      checkoutCart: function(products, totalPrice, totalQuantity) {
+        var ajaxRequest = new XMLHttpRequest();
+        
+          ajaxRequest.onreadystatechange = function(){
+                  if(ajaxRequest.readyState == 4){
+                                 if(Object.keys(ajaxRequest.responseText).length<=3)
+            {
+              if(confirm("Bạn chưa đăng nhập! Chuyển đến trang đăng nhập"))
+              {
+               window.location="admin/pages/login.html";
+             }
+           }
+           else
+             window.alert(ajaxRequest.responseText);
+                  }
+               }
+           var queryString =new Array();
+       
+          $.each(products, function(){
+          queryString.push(this.id);
+          queryString.push(this.quantity);
+        
+        });
+          var jsonString = JSON.stringify(queryString);
+          ajaxRequest.open("POST", "Cart.php?p=" + jsonString, true);
+               ajaxRequest.send(null); 
+       
+
+     },
+     getDiscountPrice: function(products, totalPrice, totalQuantity) {
+      console.log("calculating discount", products, totalPrice, totalQuantity);
+      return totalPrice ;
+    }
+  });
+
+  });
+</script>
   </body>
 
 </html>

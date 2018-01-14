@@ -264,7 +264,15 @@ $db->connect();
         
           ajaxRequest.onreadystatechange = function(){
                   if(ajaxRequest.readyState == 4){
-                     window.alert(ajaxRequest.responseText);
+                                 if(Object.keys(ajaxRequest.responseText).length<=3)
+            {
+              if(confirm("Bạn chưa đăng nhập! Chuyển đến trang đăng nhập"))
+              {
+               window.location="admin/pages/login.html";
+             }
+           }
+           else
+             window.alert(ajaxRequest.responseText);
                   }
                }
            var queryString =new Array();

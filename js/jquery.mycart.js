@@ -217,8 +217,8 @@
         '<table class="table table-hover table-responsive" id="' + idCartTable + '"></table>' +
         '</div>' +
         '<div class="modal-footer">' +
-        '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-        '<button type="button" class="btn btn-primary ' + classCheckoutCart + '">Checkout</button>' +
+        '<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>' +
+        '<button type="button" class="btn btn-primary ' + classCheckoutCart + '">Thanh toán</button>' +
         '</div>' +
         '</div>' +
         '</div>' +
