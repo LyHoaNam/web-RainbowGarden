@@ -271,7 +271,7 @@ $db->connect();
     $result = $db->executeQuery("select count(*) countid from product where (name like '%{$_GET['tukhoa']}%' or price = {$_GET['tukhoa']})" );
   }
   else
-
+    //$result=$db->executeQuery("SELECT * from product");
     $result=$db->executeQuery("SELECT count(id) countid from product where category=$danhmuccon");
   if($result)
   {
