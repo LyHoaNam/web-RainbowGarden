@@ -196,10 +196,25 @@
 
     if(options.cartItems && options.cartItems.constructor === Array) {
       ProductManager.clearProduct();
-      $.each(options.cartItems, function() {
-        ProductManager.setProduct(this.id, this.name, this.summary, this.price, this.quantity, this.image);
+      //ajaxProdcut
+      //var ajaxProduct =new XMLHttpRequest();
+      //var pString =new Array();
+
+
+      //$.each(options.cartItems, function() {
+       // ProductManager.setProduct(this.id, this.name, this.summary, this.price, this.quantity, this.image);
         //here is problem
-      });
+       /* pString.push(this.id);
+        pString.push(this.name);
+        pString.push(this.summary);
+        pString.push(this.price);
+        pString.push(this.quantity);
+        pString.push(this.image);
+        */
+      //});
+      //var JsonPString=JSON.stringify(pString);
+      //ajaxRequest.open("POST", "ProductCart.php?p=" + jsonPString, true);
+      //ajaxRequest.send(null); 
     }
 
     $cartBadge.text(ProductManager.getTotalQuantity());
@@ -217,8 +232,8 @@
         '<table class="table table-hover table-responsive" id="' + idCartTable + '"></table>' +
         '</div>' +
         '<div class="modal-footer">' +
-        '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-        '<button type="button" class="btn btn-primary ' + classCheckoutCart + '">Checkout</button>' +
+        '<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>' +
+        '<button type="button" class="btn btn-primary ' + classCheckoutCart + '">Thanh toán</button>' +
         '</div>' +
         '</div>' +
         '</div>' +
@@ -231,7 +246,19 @@
       $cartTable.empty();
 
       var products = ProductManager.getAllProducts();
+      //ajax here
+      var ajaxProduct =new XMLHttpRequest();
+      var pString =new Array();
+
       $.each(products, function(){
+        //
+        pString.push(this.id);
+        pString.push(this.name);
+        pString.push(this.summary);
+        pString.push(this.price);
+        pString.push(this.quantity);
+        pString.push(this.image);
+        //
         var total = this.quantity * this.price;
         $cartTable.append(
           '<tr title="' + this.summary + '" data-id="' + this.id + '" data-price="' + this.price + '">' +
@@ -270,8 +297,14 @@
           );
       }
 
+
       showGrandTotal();
       showDiscountPrice();
+
+      //
+      var JsonPString=JSON.stringify(pString);
+      //ajaxRequest.open("POST", "ProductCart.php?p=" + jsonPString, true);
+      //ajaxRequest.send(null);
     }
     var showModal = function(){
       drawTable();

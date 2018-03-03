@@ -242,11 +242,9 @@ $db->connect();
       showCheckoutModal: true,
       numberOfDecimals: 2,
       cartItems: [
-      <?php
-      if(isset($_SESSION['product']))
-        {?>
-          {id: <?php echo $_SESSION['product'][$i]['id'] ?>, name: <?php echo $_SESSION['product'][$i]['name']?>, summary: <?php echo $_SESSION['product'][$i]['summary'] ?>, price: <?php echo $_SESSION['product'][$i]['price']?>, quantity:<?php echo $_SESSION['product'][$i]['quantity']?>, image:<?php echo $_SESSION['product'][$i]['image']?>} ,
-          <?php } ?>
+     
+     
+          
           ],
       //hieu ung nhay vao gio
       clickOnAddToCart: function($addTocart){
@@ -264,7 +262,15 @@ $db->connect();
         
           ajaxRequest.onreadystatechange = function(){
                   if(ajaxRequest.readyState == 4){
-                     window.alert(ajaxRequest.responseText);
+                                 if(Object.keys(ajaxRequest.responseText).length<=3)
+            {
+              if(confirm("Bạn chưa đăng nhập! Chuyển đến trang đăng nhập"))
+              {
+               window.location="admin/pages/login.html";
+             }
+           }
+           else
+             window.alert(ajaxRequest.responseText);
                   }
                }
            var queryString =new Array();

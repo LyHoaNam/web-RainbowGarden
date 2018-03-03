@@ -53,6 +53,10 @@ if($customid != null)
 		}
 		if($check==$ij)
 			echo "thành công";
+		else
+			echo "Thất bại";
 	}
 }
+else
+	echo "f";
 ?>

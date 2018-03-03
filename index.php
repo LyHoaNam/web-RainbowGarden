@@ -1,6 +1,8 @@
 <?php 
 @session_start();
-
+include "php/connectDB.php";
+$db=new DataAccessHelper;
+$db->connect();
 
 ?>
 <!DOCTYPE html>
@@ -21,10 +23,11 @@
   <!-- Custom styles for this template -->
   <link href="css/modern-business.css" rel="stylesheet">
   <link href="css/icon-fonts.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
+  
   <link href="css/settings.css" rel="stylesheet">
   <link href="css/grid-and-effects.css" rel="stylesheet">
   <link href="css/custom.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -63,21 +66,23 @@
            <a class="nav-link" href="caymini.php">Cây mini</a>
          </li>
          <li class="nav-item">
-          <a class="nav-link" href="caykhongkhi.php">Cây không khí</a>
+          <a class="nav-link" href="caykhongkhi.php" >Cây không khí</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="cayhandmade.php">Cây handmade</a>
+          <a class="nav-link" href="cayhandmade.php" >Cây handmade</a>
         </li>
 
         <li>
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search"/>
-            <span class="input-group-button">
-              <button class="btn btn-default" style="background-color: #4b9249">
-                <i class="fa fa-search"></i>
-              </button>
-            </span>
-          </div>
+          <form class="input-with-submit header-search" method="GET" >
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Tìm thứ gì đó?" name="tukhoa">
+              <span class="input-group-button">
+                <button class="btn btn-default" style="background-color: #4b9249" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link" href="lienhe.php">
@@ -252,179 +257,53 @@
 
 
 <div  class="Sanpham">
-  <h4 >Các sản phẩm nổi bật</h4>
+  <h4 >Các sản phẩm <?php if (!isset($_GET['tukhoa'])) echo "nổi bật"?> </h4>
 </div>
 <div class="row">
 
-  <div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
 
-    <div class="card h-348 cart_items">
-      <div class=" dropdown ">
-        <a href=" sanpham.html" class="product-image"><img class="card-img-top" src="img/bn1.jpg" alt=""></a>
-        <div class="dropdown-content"><img src="img/bn1.jpg" width="400" height="400"></div>
-      </div>
-      <div class="card-body" style=" 
+  <?php 
+  $size = 8;
+  $danhmuccon = 0;
+  $tongsotrang=0;
+  if (isset($_GET['tukhoa'])) {
 
-      ">
-      <h4 class="card-title Namet">
-        Cây không khí nhân sâm
-      </h4>
-
-      <span style="width: 100%">
-        <strong class="Giat">100.000&nbsp;₫</strong>
-        <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-
-
-      </span>
-    </div>
+    $result = $db->executeQuery("select count(*) countid from product where (name like '%{$_GET['tukhoa']}%' or price = {$_GET['tukhoa']})" );
+  }
+  else
+    //$result=$db->executeQuery("SELECT * from product");
+    $result=$db->executeQuery("SELECT count(id) countid from product where category=$danhmuccon");
+  if($result)
+  {
+    $row=mysqli_fetch_assoc($result);
+    $numpd= $row["countid"];
+    $tongsotrang=$numpd / 8;
+    if($numpd%8 ==0)
+      $themsotrang=0;
+    else
+      $themsotrang=1;
+    include("php/products-list.php"); }
+    ?>
   </div>
-</div>
-<div class="col-md-4 col-sm-6 col-lg-3  portfolio-item">
-  <div class="card h-100 cart_items">
-   <div class=" dropdown">
-    <a href="sanpham.html" class="product-image"><img class="card-img-top" src="img/bn2.jpg" alt=""></a>
-    <div class="dropdown-content"><img src="img/bn2.jpg" width="400" height="400   "></div>
-  </div>
-  <div class="card-body">
-    <h4 class="card-title Namet">
-      Xương rồng nhỏ GX103
-    </h4>
-    <span style="width: 100%">
-      <strong class="Giat">70.000&nbsp;₫</strong>
-      <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-    </span>
+  <!-- /.row -->
 
-  </div>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
-  <div class="card h-100 cart_items">
-   <div class=" dropdown">
-    <a href="sanpham.html" class="product-image"><img class="card-img-top" src="img/bn3.jpg" alt=""></a>
-    <div class="dropdown-content"><img src="img/bn3.jpg" width="400" height="400"></div>
-  </div>
-  <div class="card-body">
-    <h4 class="card-title Namet">
-      Xương rồng gai nhỏ XT301
-    </h4>
-    <span style="width: 100%">
-      <strong class="Giat">69.000&nbsp;₫</strong>
-      <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-    </span>
+  <!-- Features Section -->
+  <div class="row">
+   <div class="panel-grid" id="pg-4680-4">
+    <div class="siteorigin-panels-stretch panel-row-style" style="padding: 70px;background-image: url(http://vuoncaymini.com/wp-content/uploads/2015/01/texture_1.png);background-repeat: repeat;" data-stretch-type="full">
+      <div class="panel-grid-cell" id="pgc-4680-4-0">
+        <div class="so-panel widget widget_qt_testimonials widget-testimonials panel-first-child panel-last-child" id="panel-4680-4-0-0" data-index="6">
+          <div class="testimonials">
 
-  </div>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
-  <div class="card h-100 cart_items">
-   <div class=" dropdown">
-    <a href="sanpham.html" class="product-image"><img class="card-img-top" src="img/bn4.jpg" alt=""></a>
-    <div class="dropdown-content" style="left: -300px"><img src="img/bn4.jpg" width="400" height="400"></div>
-  </div>
-  <div class="card-body">
-    <h4 class="card-title Namet">
-      Cây sen thơm Hàn Quốc
-    </h4>
-    <span style="width: 100%">
-      <strong class="Giat">130.000&nbsp;₫</strong>
-      <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-    </span>
-
-  </div>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
-  <div class="card h-100 cart_items">
-   <div class=" dropdown">
-    <a href="sanpham.html" class="product-image"><img class="card-img-top" src="img/bn5.jpg" alt=""></a>
-    <div class="dropdown-content"><img src="img/bn5.jpg" width="400" height="400"></div>
-  </div>
-  <div class="card-body">
-    <h4 class="card-title Namet">
-      Cây tiểu trầm Đài Loan
-    </h4>
-    <span style="width: 100%">
-      <strong class="Giat">200.000&nbsp;₫</strong>
-      <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-    </span>
-
-  </div>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
-  <div class="card h-100 cart_items">
-   <div class=" dropdown">
-    <a href="sanpham.html" class="product-image"><img class="card-img-top" src="img/bn6.jpg" alt=""></a>
-    <div class="dropdown-content"><img src="img/bn6.jpg" width="400" height="400"></div>
-  </div>
-  <div class="card-body">
-    <h4 class="card-title Namet">
-      Cây handmade xương rồng cặp đôi
-    </h4>
-    <span style="width: 100%">
-      <strong class="Giat">130.000&nbsp;₫</strong>
-      <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-    </span>
-
-  </div>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
-  <div class="card h-100 cart_items">
-   <div class=" dropdown">
-    <a href="sanpham.html" class="product-image"><img class="card-img-top" src="img/bn7.jpg" alt=""></a>
-    <div class="dropdown-content"><img src="img/bn7.jpg" width="400" height="400"></div>
-  </div>
-  <div class="card-body">
-    <h4 class="card-title Namet">
-      Cây thông giả để bàn XI301
-    </h4>
-    <span style="width: 100%">
-      <strong class="Giat">305.000&nbsp;₫</strong>
-      <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-    </span>
-
-  </div>
-</div>
-</div>
-<div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
-  <div class="card h-100 cart_items">
-   <div class=" dropdown">
-    <a href="sanpham.html" class="product-image"><img class="card-img-top" src="img/bn8.jpg" alt=""></a>
-    <div class="dropdown-content" style="left: -300px "><img src="img/bn8.jpg" width="400" height="400"></div>
-  </div>
-  <div class="card-body">
-    <h4 class="card-title Namet">
-      Cây không khí vườn tiên GA210
-    </h4>
-    <span style="width: 100%">
-      <strong class="Giat">234.000&nbsp;₫</strong>
-      <i class="fa fa-shopping-cart shopping_bg add-to-cart" aria-hidden="true" style="margin-left: 100px; font-size:24px; color: #4b9249" ></i>
-    </span>
-
-  </div>
-</div>
-</div>
-</div>
-<!-- /.row -->
-
-<!-- Features Section -->
-<div class="row">
- <div class="panel-grid" id="pg-4680-4">
-  <div class="siteorigin-panels-stretch panel-row-style" style="padding: 70px;background-image: url(http://vuoncaymini.com/wp-content/uploads/2015/01/texture_1.png);background-repeat: repeat;" data-stretch-type="full">
-    <div class="panel-grid-cell" id="pgc-4680-4-0">
-      <div class="so-panel widget widget_qt_testimonials widget-testimonials panel-first-child panel-last-child" id="panel-4680-4-0-0" data-index="6">
-        <div class="testimonials">
-
-          <h3 class="widget-title" style=" color: #4b9249">
+            <h3 class="widget-title" style=" color: #4b9249">
 
 
 
-            Khách Hàng Nói Gì?
-          </h3>
+              Khách Hàng Nói Gì?
+            </h3>
 
-          <div id="testimonials-carousel-widget-4-0-0" class="carousel slide" data-ride="carousel" data-interval="8000">
-            <div class="carousel-inner" role="listbox">
+            <div id="testimonials-carousel-widget-4-0-0" class="carousel slide" data-ride="carousel" data-interval="8000">
+              <div class="carousel-inner" role="listbox">
             <!-- <div class="item active">
               <div class="row">
 
@@ -492,11 +371,13 @@
 <!-- Bootstrap core JavaScript -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/popper/popper.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script src="js/jquery-2.2.3.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <script type='text/javascript' src="js/jquery.mycart.js"></script>
-<script type="text/javascript" src="js/jquery.min.js"></script>
+
 <script type="text/javascript" src="js/jquery_easing.js"></script>
+
 <script type="text/javascript">
   $(function () {
 
@@ -524,11 +405,9 @@
       showCheckoutModal: true,
       numberOfDecimals: 2,
       cartItems: [
-      <?php
-      if(isset($_SESSION['product']))
-        {?>
-          {id: <?php echo $_SESSION['product'][$i]['id'] ?>, name: <?php echo $_SESSION['product'][$i]['name']?>, summary: <?php echo $_SESSION['product'][$i]['summary'] ?>, price: <?php echo $_SESSION['product'][$i]['price']?>, quantity:<?php echo $_SESSION['product'][$i]['quantity']?>, image:<?php echo $_SESSION['product'][$i]['image']?>} ,
-          <?php } ?>
+     
+     
+          
           ],
       //hieu ung nhay vao gio
       clickOnAddToCart: function($addTocart){
@@ -544,21 +423,29 @@
       checkoutCart: function(products, totalPrice, totalQuantity) {
         var ajaxRequest = new XMLHttpRequest();
         
-        ajaxRequest.onreadystatechange = function(){
-          if(ajaxRequest.readyState == 4){
-           window.alert(ajaxRequest.responseText);
-         }
-       }
-       var queryString =new Array();
+          ajaxRequest.onreadystatechange = function(){
+                  if(ajaxRequest.readyState == 4){
+                                 if(Object.keys(ajaxRequest.responseText).length<=3)
+            {
+              if(confirm("Bạn chưa đăng nhập! Chuyển đến trang đăng nhập"))
+              {
+               window.location="admin/pages/login.html";
+             }
+           }
+           else
+             window.alert(ajaxRequest.responseText);
+                  }
+               }
+           var queryString =new Array();
        
-       $.each(products, function(){
-        queryString.push(this.id);
-        queryString.push(this.quantity);
+          $.each(products, function(){
+          queryString.push(this.id);
+          queryString.push(this.quantity);
         
-      });
-       var jsonString = JSON.stringify(queryString);
-       ajaxRequest.open("POST", "Cart.php?p=" + jsonString, true);
-       ajaxRequest.send(null); 
+        });
+          var jsonString = JSON.stringify(queryString);
+          ajaxRequest.open("POST", "Cart.php?p=" + jsonString, true);
+               ajaxRequest.send(null); 
        
 
      },
@@ -570,6 +457,7 @@
 
   });
 </script>
+
 </body>
 
 </html>
