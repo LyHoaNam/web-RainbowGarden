@@ -264,7 +264,7 @@ if(isset($_SESSION["DelErr"]))
                                     <td><?php echo $row['id'] ?></td>
                                     <td><?php echo $row['name'] ?> </td>
 
-                                    <td ><?php echo $row['price'] ?>.000</td>
+                                    <td ><?php echo 0 ?>.000</td>
                                     <td > <img style="width: 30px; height:30px" src="../../<?php echo $row['imagiUrl'] ?>"></td>
                                     <td ><?php if( $row['category']==1 )
                                     echo "cây mini";

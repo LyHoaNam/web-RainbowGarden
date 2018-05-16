@@ -14,7 +14,7 @@ if($danhmuccon ==0)
 }
 else
 {
-  $query=$db->executeQuery("SELECT p.* FROM product p JOIN (SELECT sum(quantity), id_product FROM cart_detail GROUP BY id_product ORDER BY sum(quantity) DESC LIMIT 8) q ON p.id=q.id_product ");
+  $query=$db->executeQuery("SELECT p.* FROM product p JOIN (SELECT sum(quantity), id_product FROM order_line GROUP BY id_product ORDER BY sum(quantity) DESC LIMIT 8) q ON p.id=q.id_product ");
 }
 }
 else
@@ -33,7 +33,7 @@ while($row=mysqli_fetch_assoc($query)){
   $id= $row["id"];
   $name=$row["name"] ;
   $summary= $row["name"];
-  $price= (int)$row["price"];
+  $price=0;// (int)$row["price"];
   $imagi=$row["imagiUrl"] ;
   ?>
   <div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
