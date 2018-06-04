@@ -3,22 +3,22 @@ include "../../php/connectDB.php";
 $db=new DataAccessHelper;
 $db->connect();
 
-$query1 =$db->executeQuery ("SELECT sum(p2.tprice) tday, DAY( p1.createdate) FROM cart p1 JOIN (SELECT d.id_cart, sum( d.quantity * p.price) tprice FROM cart_detail d JOIN product p ON d.id_product = p.id WHERE p.category= {$category} GROUP BY d.id_cart) p2 ON p1.id =p2.id_cart WHERE p1.createdate=CURDATE() GROUP BY p1.createdate ");
+$query1 =$db->executeQuery ("SELECT totalAmounts(CURRENT_DATE, CURRENT_DATE, {$category}) as totalAmounts ");
 if($query1->num_rows>0)
 {
 	$row1=mysqli_fetch_assoc($query1);
-	$totalDay =$row1["tday"] ;
+	$totalDay =$row1["totalAmounts"] ;
 }
-$query2 =$db->executeQuery ("SELECT sum(p2.tprice) tmonth,MONTH( p1.createdate) FROM cart p1 JOIN (SELECT d.id_cart, sum( d.quantity * p.price) tprice FROM cart_detail d JOIN product p ON d.id_product = p.id WHERE p.category= {$category} GROUP BY d.id_cart) p2 ON p1.id =p2.id_cart WHERE MONTH(p1.createdate)=MONTH(CURDATE()) AND YEAR(p1.createdate)=YEAR(CURDATE()) GROUP BY MONTH(p1.createdate )");
+$query2 =$db->executeQuery ("SELECT totalAmounts(concat(YEAR(now()),'-',month(now()),'-1'), LAST_DAY(now()),{$category}) as totalAmounts");
 if($query2->num_rows>0)
 {
 	$row2=mysqli_fetch_assoc($query2);
-	$totalMonth =$row2["tmonth"] ;
+	$totalMonth =$row2["totalAmounts"] ;
 }		
-$query3 =$db->executeQuery ("SELECT sum(p2.tprice) tyear,YEAR( p1.createdate) FROM cart p1 JOIN (SELECT d.id_cart, sum( d.quantity * p.price) tprice FROM cart_detail d JOIN product p ON d.id_product = p.id WHERE p.category= {$category} GROUP BY d.id_cart) p2 ON p1.id =p2.id_cart WHERE YEAR(p1.createdate)=YEAR(CURDATE()) GROUP BY YEAR(p1.createdate )");
+$query3 =$db->executeQuery ("SELECT totalAmounts(concat(YEAR(now()),'-1','-1'),concat(year(now()),'-12-31') ,{$category}) as totalAmounts");
 if($query3->num_rows>0)
 {
 	$row3=mysqli_fetch_assoc($query3);
-	$totalYear =$row3["tyear"] ;
+	$totalYear =$row3["totalAmounts"] ;
 }		
 ?>

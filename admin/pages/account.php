@@ -18,7 +18,7 @@ if (isset($_POST["btn_submit"])) {
 	$num_rows = mysqli_num_rows($query);
 	echo $num_rows; 
 	if ($num_rows!=0) {
-		echo "1";
+		
 		$row=mysqli_fetch_assoc($query);
 		$id_ac=$row["id"];
 		$username_ac=$row["username"];

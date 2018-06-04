@@ -208,6 +208,23 @@ if(isset($_SESSION["DelErr"]))
                                 required data-validation-required-message="Please enter your email address.">
                             </div>
                             <div class="form-group col-lg-4">
+                                <input class="form-control" placeholder="Miêu tả" name="short_descripsion"
+                                required data-validation-required-message="Please enter your email address.">
+                            </div>
+                                                        <div class="form-group col-lg-4">
+                                <input class="form-control" placeholder="Số lượng" name="inStock"
+                                required data-validation-required-message="Please enter your email address.">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <select class="form-control" name="isAvailable">
+                                    <option value="1">Được bán</option>
+                                    
+                                    <option value="0">Lưu trữ</option>
+                                    
+
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
 
                                 <input type="submit" class=" btn btn-outline btn-success"
                                 style="width: 100%" name="btn_submit" value="Xác nhận"  >
@@ -254,7 +271,7 @@ if(isset($_SESSION["DelErr"]))
                         </thead>
                         <tbody>
                             <?php 
-                            $sql="select * from product";
+                            $sql="select p.*, activePrice(p.id) as price from product p";
                             $query=$db->executeQuery($sql);
                             while($row=mysqli_fetch_assoc($query))
                             {
@@ -264,7 +281,7 @@ if(isset($_SESSION["DelErr"]))
                                     <td><?php echo $row['id'] ?></td>
                                     <td><?php echo $row['name'] ?> </td>
 
-                                    <td ><?php echo 0 ?>.000</td>
+                                    <td ><?php echo $row['price']  ?>.000</td>
                                     <td > <img style="width: 30px; height:30px" src="../../<?php echo $row['imagiUrl'] ?>"></td>
                                     <td ><?php if( $row['category']==1 )
                                     echo "cây mini";

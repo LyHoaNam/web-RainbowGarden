@@ -150,6 +150,7 @@ $db->connect();
     color: #a1e6a1 !important;
   }
 
+
 </style>
 <div class="row">
 
@@ -213,12 +214,11 @@ $db->connect();
 <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <script type='text/javascript' src="js/jquery.mycart.js"></script>
 
-
-
-<script type="text/javascript">
+   <script type="text/javascript">
   $(function () {
 
     var goToCartIcon = function($addTocartBtn){
+      console.log('1');
       var $cartIcon = $(".my-cart-icon");
       var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
       $addTocartBtn.prepend($image);
@@ -242,60 +242,38 @@ $db->connect();
       showCheckoutModal: true,
       numberOfDecimals: 2,
       cartItems: [
-      <?php
-      if(isset($_SESSION['product']))
-        {?>
-          {id: <?php echo $_SESSION['product'][$i]['id'] ?>, name: <?php echo $_SESSION['product'][$i]['name']?>, summary: <?php echo $_SESSION['product'][$i]['summary'] ?>, price: <?php echo $_SESSION['product'][$i]['price']?>, quantity:<?php echo $_SESSION['product'][$i]['quantity']?>, image:<?php echo $_SESSION['product'][$i]['image']?>} ,
-          <?php } ?>
-          ],
-      //hieu ung nhay vao gio
-      clickOnAddToCart: function($addTocart){
-        goToCartIcon($addTocart);
         
+      ],
+      clickOnAddToCart: function($addTocart){
+        console.log('2');
+        goToCartIcon($addTocart);
       },
       afterAddOnCart: function(products, totalPrice, totalQuantity) {
+        console.log('3');
         console.log("afterAddOnCart", products, totalPrice, totalQuantity);
       },
       clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+        console.log('4');
         console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
       },
       checkoutCart: function(products, totalPrice, totalQuantity) {
-        var ajaxRequest = new XMLHttpRequest();
-        
-          ajaxRequest.onreadystatechange = function(){
-                  if(ajaxRequest.readyState == 4){
-                                 if(Object.keys(ajaxRequest.responseText).length<=3)
-            {
-              if(confirm("Bạn chưa đăng nhập! Chuyển đến trang đăng nhập"))
-              {
-               window.location="admin/pages/login.html";
-             }
-           }
-           else
-             window.alert(ajaxRequest.responseText);
-                  }
-               }
-           var queryString =new Array();
-       
-          $.each(products, function(){
-          queryString.push(this.id);
-          queryString.push(this.quantity);
-        
+        var checkoutString = "Total Price: " + totalPrice + "\nTotal Quantity: " + totalQuantity;
+        checkoutString += "\n\n id \t name \t summary \t price \t quantity \t image path";
+        $.each(products, function(){
+          checkoutString += ("\n " + this.id + " \t " + this.name + " \t " + this.summary + " \t " + this.price + " \t " + this.quantity + " \t " + this.image);
         });
-          var jsonString = JSON.stringify(queryString);
-          ajaxRequest.open("POST", "Cart.php?p=" + jsonString, true);
-               ajaxRequest.send(null); 
-       
+        alert(checkoutString)
+        console.log("checking out", products, totalPrice, totalQuantity);
+      },
+      getDiscountPrice: function(products, totalPrice, totalQuantity) {
+        console.log("calculating discount", products, totalPrice, totalQuantity);
+        return totalPrice * 0.5;
+      }
+    });
 
-     },
-     getDiscountPrice: function(products, totalPrice, totalQuantity) {
-      console.log("calculating discount", products, totalPrice, totalQuantity);
-      return totalPrice ;
-    }
-  });
 
   });
-</script>
+  </script>
 
 
 </body>

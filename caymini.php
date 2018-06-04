@@ -216,6 +216,7 @@ $db->connect();
 
 
 <script type="text/javascript">
+
   $(function () {
 
     var goToCartIcon = function($addTocartBtn){
@@ -231,7 +232,7 @@ $db->connect();
       });
     }
 
-    $('.my-cart-btn').myCart({
+    $('#my-cart-btn').myCart({
       currencySymbol: '$',
       classCartIcon: 'my-cart-icon',
       classCartBadge: 'my-cart-badge',

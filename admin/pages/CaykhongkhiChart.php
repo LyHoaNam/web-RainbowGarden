@@ -133,8 +133,8 @@ $totalDay=0;
 $totalMonth=0;
 $totalYear=0;
 $Day=0;
-$Month=1;
-$Year=2018;
+$Month=date('m');
+$Year=date('Y');
 include("chartproduct.php");
 if($Day==0 )
 {
@@ -252,19 +252,18 @@ if($Day==0 )
                             <?php 
                             if($_SESSION["SelView"]==1)
                             {
-                                $sqlCt="SELECT p1.fullname,p1.createdate,p2.tprice FROM cart p1 JOIN (SELECT d.id_cart, sum( d.quantity * p.price) tprice FROM cart_detail d JOIN product p ON d.id_product = p.id GROUP BY d.id_cart) p2 ON p1.id =p2.id_cart WHERE p1.createdate=CURDATE() ORDER BY p1.createdate DESC LIMIT 0,9 ";
+                                $sqlCt="call sp_thongkedonhang(CURRENT_DATE, CURRENT_DATE,'2018-8-8',2)";
                             }
                             else
                                 if($_SESSION["SelView"]==2)
                                 {
-                                    $sqlCt="SELECT p1.fullname,p1.createdate,p2.tprice FROM cart p1 JOIN (SELECT d.id_cart, sum( d.quantity * p.price) tprice FROM cart_detail d JOIN product p ON d.id_product = p.id GROUP BY d.id_cart) p2 ON p1.id =p2.id_cart WHERE MONTH(p1.createdate)='{$Month}' AND YEAR(p1.createdate)='{$Year}' ORDER BY p1.createdate DESC LIMIT 0,9 ";
+                                    $sqlCt="call sp_thongkedonhang(concat(YEAR(now()),'-',month(now()),'-1'), LAST_DAY(now()),2)";
                                 }
                                 else
                                    if($_SESSION["SelView"]==3)
                                    {
-                                    $sqlCt="SELECT p1.fullname,p1.createdate,p2.tprice FROM cart p1 JOIN (SELECT d.id_cart, sum( d.quantity * p.price) tprice FROM cart_detail d JOIN product p ON d.id_product = p.id GROUP BY d.id_cart) p2 ON p1.id =p2.id_cart WHERE  YEAR(p1.createdate)='{$Year}' ORDER BY p1.createdate DESC LIMIT 0,9 ";
+                                    $sqlCt="call sp_thongkedonhang(concat(YEAR(now()),'-1','-1'),concat(year(now()),'-12-31') ,2)";
                                 }
-
                                 $tbCart=$db->executeQuery($sqlCt);
                                 $i=1;
                                 while($row=mysqli_fetch_assoc($tbCart))
@@ -274,9 +273,9 @@ if($Day==0 )
                                     <tr class="odd gradeX">
 
                                         <td><?php echo $i ;$i++?></td>
-                                        <td><?php echo $row['fullname'] ?> </td>
+                                        <td><?php echo $row['id'] ?> </td>
                                         <td ><?php echo $row['createdate'] ?></td>
-                                        <td > <?php echo $row['tprice'] ?>000</td>
+                                        <td > <?php echo $row['total'] ?>000</td>
 
                                     </tr>
 

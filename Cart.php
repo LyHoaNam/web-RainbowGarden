@@ -35,7 +35,7 @@ if(isset($_SESSION['account']))
 	
 }
 
-if($customid != null)
+if(isset($_SESSION['customer']) || isset($_SESSION['account']) )
 {
 	
 	$sqlC="INSERT INTO `cart`( `createdate`, `custom_id`, `fullname`) VALUES (now(),'$customid','Cart_$customid')";
@@ -52,9 +52,9 @@ if($customid != null)
 				{$check++;}
 		}
 		if($check==$ij)
-			echo "thành công";
+			echo "success";
 		else
-			echo "Thất bại";
+			echo "fall";
 	}
 }
 else

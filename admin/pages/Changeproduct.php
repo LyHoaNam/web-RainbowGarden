@@ -11,13 +11,19 @@ if (isset($_POST["btn_submit"])) {
 	$saleoffpr= $_POST["saleoff"];
 	$imgulrpr= $_POST["imagiUrl"];
 	$categorypr= $_POST["category"];
-	
+	$short_descripsionppr=$_POST["short_descripsion"];
+	$inStockpr=$_POST["inStock"];
+	$isAvailablepr=$_POST["isAvailable"];
 	$db=new DataAccessHelper;
 	$db->connect();
-	$sql="INSERT INTO `product`( `name`, `saleoff`, `category`, `price`, `imagiUrl`) VALUES ('$namepd',$saleoffpr,$categorypr,$pricepd,'$imgulrpr')";
+	$sql="INSERT INTO `product`( `name`, `saleoff`, `category`, `imagiUrl`,`short_descripsion`, `inStock`, `isAvailable`)
+	VALUES ('$namepd',$saleoffpr,$categorypr,'$imgulrpr',$short_descripsionppr,$inStockpr,$isAvailablepr)";
 
 	if($db->executeNonQuery($sql))
 	{
+		$lastid=$db->lastIdInsert();
+		$sql="INSERT INTO `pricelist`( `productID`, `price`, `startdate`, `enddate`) VALUES ($lastid,$price,now(),'2018-10-10');";
+		$db->executeNonQuery($sql);
 		$_SESSION["sussect"] = "thêm thành công";
 	}
 	else

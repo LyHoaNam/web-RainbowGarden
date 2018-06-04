@@ -51,15 +51,15 @@ $db->connect();
 
         <li>
           <form class="input-with-submit header-search" method="GET" >
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Tìm thứ gì đó?" name="tukhoa">
-            <span class="input-group-button">
-              <button class="btn btn-default" style="background-color: #4b9249" type="submit">
-                <i class="fa fa-search"></i>
-              </button>
-            </span>
-          </div>
-        </form>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Tìm thứ gì đó?" name="tukhoa">
+              <span class="input-group-button">
+                <button class="btn btn-default" style="background-color: #4b9249" type="submit">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+            </div>
+          </form>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link" href="lienhe.php">
@@ -217,7 +217,6 @@ $db->connect();
 
 <script type="text/javascript">
   $(function () {
-
     var goToCartIcon = function($addTocartBtn){
       var $cartIcon = $(".my-cart-icon");
       var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
@@ -230,7 +229,6 @@ $db->connect();
         $image.remove();
       });
     }
-
     $('.my-cart-btn').myCart({
       currencySymbol: '$',
       classCartIcon: 'my-cart-icon',
@@ -246,8 +244,8 @@ $db->connect();
       if(isset($_SESSION['product']))
         {?>
           {id: <?php echo $_SESSION['product'][$i]['id'] ?>, name: <?php echo $_SESSION['product'][$i]['name']?>, summary: <?php echo $_SESSION['product'][$i]['summary'] ?>, price: <?php echo $_SESSION['product'][$i]['price']?>, quantity:<?php echo $_SESSION['product'][$i]['quantity']?>, image:<?php echo $_SESSION['product'][$i]['image']?>} ,
-          <?php } ?>
-          ],
+        <?php } ?>
+        ],
       //hieu ung nhay vao gio
       clickOnAddToCart: function($addTocart){
         goToCartIcon($addTocart);
@@ -262,38 +260,39 @@ $db->connect();
       checkoutCart: function(products, totalPrice, totalQuantity) {
         var ajaxRequest = new XMLHttpRequest();
         
-          ajaxRequest.onreadystatechange = function(){
-                  if(ajaxRequest.readyState == 4){
-                                 if(Object.keys(ajaxRequest.responseText).length<=3)
+        ajaxRequest.onreadystatechange = function(){
+          if(ajaxRequest.readyState == 4){
+            
+            if(Object.keys(ajaxRequest.responseText).length<=3)
             {
+              
               if(confirm("Bạn chưa đăng nhập! Chuyển đến trang đăng nhập"))
               {
                window.location="admin/pages/login.html";
              }
            }
            else
-             window.alert(ajaxRequest.responseText);
-                  }
-               }
-           var queryString =new Array();
-       
-          $.each(products, function(){
-          queryString.push(this.id);
-          queryString.push(this.quantity);
-        
-        });
-          var jsonString = JSON.stringify(queryString);
-          ajaxRequest.open("POST", "Cart.php?p=" + jsonString, true);
-               ajaxRequest.send(null); 
-       
+             window.alert('Thanh toan');
 
+         }
+       }
+       var queryString =new Array();
+       
+       $.each(products, function(){
+        queryString.push(this.id);
+        queryString.push(this.quantity);
+        
+      });
+       var jsonString = JSON.stringify(queryString);
+       ajaxRequest.open("POST", "Cart.php?p=" + jsonString, true);
+       ajaxRequest.send(); 
+       
      },
      getDiscountPrice: function(products, totalPrice, totalQuantity) {
       console.log("calculating discount", products, totalPrice, totalQuantity);
       return totalPrice ;
     }
   });
-
   });
 </script>
 

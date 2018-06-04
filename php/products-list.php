@@ -9,22 +9,27 @@ if(isset($_GET['trang'])){
 $start = ($trang - 1) * $size;
 if($danhmuccon ==0)
 {
- if(isset($_GET['tukhoa'])){
-  $query =$db->executeQuery ("select * from product where (name like '{$_GET['tukhoa']}' or price = {$_GET['tukhoa']} ) limit {$start}, {$size}");
-}
-else
-{
-  $query=$db->executeQuery("SELECT p.* FROM product p JOIN (SELECT sum(quantity), id_product FROM order_line GROUP BY id_product ORDER BY sum(quantity) DESC LIMIT 8) q ON p.id=q.id_product ");
-}
+   if(isset($_GET['tukhoa'])){
+    // lay san pham dua vao tu khoa (ten hoat gia)
+    $query =$db->executeQuery ("select * from product where (name like '{$_GET['tukhoa']}' or price = {$_GET['tukhoa']} ) limit {$start}, {$size}");
+  }
+  else
+  {
+    //lay san pham dua vao so luong ban nhieu nhat!
+    $query=$db->executeQuery("call sp_lietkeSanPhamNoiBat()");
+  }
 }
 else
 {
   if(isset($_GET['tukhoa'])){
+    //lay tu khoa!
     $query =$db->executeQuery ("select * from product where (name like '{$_GET['tukhoa']}' or price = {$_GET['tukhoa']} and category= {$danhmuccon}) limit {$start}, {$size}");
   }
   else
   {
-   $query =$db->executeQuery("SELECT * FROM `product` WHERE category={$danhmuccon} limit {$start}, {$size}");
+    //lay san pham dua vao danh muc
+   //$query =$db->executeQuery("SELECT * FROM `product` WHERE category={$danhmuccon} limit {$start}, {$size}");
+   $query =$db->executeQuery("call sp_lietkeSanPhamTheoLoai('{$danhmuccon}','{$start}','{$size}')");
  }
 }
 
@@ -33,7 +38,8 @@ while($row=mysqli_fetch_assoc($query)){
   $id= $row["id"];
   $name=$row["name"] ;
   $summary= $row["name"];
-  $price=0;// (int)$row["price"];
+  $price=(int)$row["price"];
+
   $imagi=$row["imagiUrl"] ;
   ?>
   <div class="col-md-4 col-sm-6 col-lg-3 portfolio-item">
@@ -50,9 +56,9 @@ while($row=mysqli_fetch_assoc($query)){
        <?php echo $name ?>
      </h4>
      <span style="width: 100%">
-      <strong class="Giat" name="price"><?php  echo $price ?>.000&nbsp;₫</strong>
+      <strong class="Giat" name="price"> <?php  echo $price ?> .000&nbsp;₫</strong>
       <span class=" productCart">
-        <i class="fa fa-shopping-cart shopping_bg add-to-cart my-cart-btn" aria-hidden="true"  data-id="<?php echo $id ?>" data-name="<?php echo $name ?>" data-summary="<?php echo $name?>" data-price="<?php echo $price  ?>" data-quantity="1" data-image="<?php echo $imagi ?>"></i>
+        <i class="fa fa-shopping-cart shopping_bg add-to-cart my-cart-btn" id="MyCartbn" aria-hidden="true"  data-id="<?php echo $id ?>" data-name="<?php echo $name ?>" data-summary="<?php echo $name?>" data-price="<?php echo $price  ?>" data-quantity="1" data-image="<?php echo $imagi ?>"></i>
       </span>
     </span>
   </div>
